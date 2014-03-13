@@ -1,0 +1,10 @@
+LIBRARY Lesson1b.dlu
+EXPORTS
+   LibNumberClasses     @1       PRIVATE
+   LibVersion           @2       PRIVATE
+   LibDescription       @3       PRIVATE   
+   LibClassDesc         @4       PRIVATE
+   
+SECTIONS
+   .data READ WRITE
+

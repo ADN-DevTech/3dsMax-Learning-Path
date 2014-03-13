@@ -1,0 +1,7 @@
+C:\Users\avisd\Desktop\max api docs\LearningPath\Lesson7\obj\Debug\Lesson7.csprojResolveAssemblyReference.cache
+C:\Users\avisd\Desktop\max api docs\LearningPath\Lesson7\obj\Debug\AutodeskMaxDllDemo.GMailPasswordForm.resources
+C:\Users\avisd\Desktop\max api docs\LearningPath\Lesson7\obj\Debug\Lesson7.csproj.GenerateResource.Cache
+C:\Users\avisd\Desktop\max api docs\LearningPath\install32\bin\assemblies\AutodeskMaxDllDemo.dll
+C:\Users\avisd\Desktop\max api docs\LearningPath\install32\bin\assemblies\AutodeskMaxDllDemo.pdb
+C:\Users\avisd\Desktop\max api docs\LearningPath\Lesson7\obj\Debug\AutodeskMaxDllDemo.dll
+C:\Users\avisd\Desktop\max api docs\LearningPath\Lesson7\obj\Debug\AutodeskMaxDllDemo.pdb
