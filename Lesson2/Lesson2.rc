@@ -98,8 +98,8 @@ END
 
 STRINGTABLE DISCARDABLE
 BEGIN
-    IDS_LIBDESCRIPTION      "A Simple ASCII Scene Exporter"
-    IDS_CATEGORY            "Learning Path"
+    IDS_LIBDESCRIPTION      "Example Scene Export plug-in"
+    IDS_CATEGORY            "SDK Documentation"
     IDS_CLASS_NAME          "Lesson2"
     IDS_PARAMS              "Parameters"
     IDS_SPIN                "Spin"

@@ -11,3 +11,10 @@
 *.lai
 *.la
 *.a
+Lesson1b/Lesson1b/Lesson1b.sdf
+*.suo
+Lesson1b/Lesson1b/obj/x64/Hybrid/CL.4004.read.1.tlog
+Lesson2/Lesson2/Lesson2.opensdf
+Lesson2/Lesson2/Lesson2.sdf
+*.tlog
+*/obj/*
