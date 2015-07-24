@@ -24,8 +24,8 @@ SampleKFCtrl::SampleKFCtrl()
 {
 	// Create default X & Y controllers.  These classes are
 	// implementations of the Control class that generate float values.
-    mpXCtrl = NULL;
-    mpYCtrl = NULL;
+	mpXCtrl = NULL;
+	mpYCtrl = NULL;
 
 	ReplaceReference(kXCtrlRef, NewDefaultFloatController());
 	ReplaceReference(kYCtrlRef, NewDefaultFloatController());
@@ -69,14 +69,14 @@ void SampleKFCtrl::Copy(Control* pFrom)
 	// Likewise for the Y controller:
 	// Control* pNewY = pFrom->GetYController();
 
-    //mpXCtrl = pFrom->GetXController();
-    //mpYCtrl = pFrom->GetYController();
+	//mpXCtrl = pFrom->GetXController();
+	//mpYCtrl = pFrom->GetYController();
 
 }
 
 void SampleKFCtrl::GetValue(TimeValue t, void *ptr, Interval &valid, GetSetMethod method)
 {
-	 //We read the values for our X & Y component from our referenced float controllers
+	//We read the values for our X & Y component from our referenced float controllers
 	Point3 p3OurAbsValue(0, 0, 0);
 	mpXCtrl->GetValue(t, &p3OurAbsValue.x, valid, CTRL_ABSOLUTE);
 	mpYCtrl->GetValue(t, &p3OurAbsValue.y, valid, CTRL_ABSOLUTE);
@@ -112,7 +112,7 @@ Animatable* SampleKFCtrl::SubAnim(int i) {
 
 	switch (i)
 	{
-    case kXCtrlRef: return mpXCtrl;
+	case kXCtrlRef: return mpXCtrl;
 	case kYCtrlRef: return mpYCtrl;
 	}
 	return NULL;
@@ -123,7 +123,7 @@ TSTR SampleKFCtrl::SubAnimName(int i)
 {
 	switch (i)
 	{
-    case kXCtrlRef: return _T("X Pos.");
+	case kXCtrlRef: return _T("X Pos.");
 	case kYCtrlRef: return _T("Y Pos.");
 	}
 	return _T("Unknown!");

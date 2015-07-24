@@ -48,11 +48,11 @@ public:
 	~SampleKFCtrl() { DeleteAllRefs(); };
 
 	SClass_ID SuperClassID() { return CTRL_POSITION_CLASS_ID; }
-    Class_ID	ClassID()   { return SampleKFCtrl_CLASS_ID; }
+	Class_ID	ClassID()   { return SampleKFCtrl_CLASS_ID; }
 
 	int NumSubs();
 	Animatable* SubAnim(int i);
-    TSTR SubAnimName(int i); 
+	TSTR SubAnimName(int i); 
 	int NumRefs() { return kNumRefs; }
 	void SetReference(int i, ReferenceTarget* pTarget);
 	ReferenceTarget* GetReference(int i);
@@ -63,7 +63,7 @@ public:
 	void GetValue(TimeValue t, void *ptr, Interval &valid, GetSetMethod method);
 	void SetValue(TimeValue t, void *ptr, int commit, GetSetMethod method);
 
-    void CommitValue(TimeValue t) { mpXCtrl->CommitValue(t); mpYCtrl->CommitValue(t);}
-    void RestoreValue(TimeValue t) { mpXCtrl->RestoreValue(t); mpYCtrl->RestoreValue(t);}
+	void CommitValue(TimeValue t) { mpXCtrl->CommitValue(t); mpYCtrl->CommitValue(t);}
+	void RestoreValue(TimeValue t) { mpXCtrl->RestoreValue(t); mpYCtrl->RestoreValue(t);}
 
 };

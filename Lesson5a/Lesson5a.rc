@@ -97,8 +97,8 @@ END
 
 STRINGTABLE DISCARDABLE
 BEGIN
-    IDS_LIBDESCRIPTION      "A utility plug-in that creates a geometric object."
-    IDS_CATEGORY            "Learning Path"
+    IDS_LIBDESCRIPTION      "Example Geom Object / Utility"
+    IDS_CATEGORY            "SDK Documentation"
     IDS_CLASS_NAME          "Lesson5a"
     IDS_PARAMS              "Parameters"
     IDS_SPIN                "Spin"

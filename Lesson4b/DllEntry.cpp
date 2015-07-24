@@ -52,7 +52,7 @@ __declspec( dllexport ) int LibNumberClasses()
 }
 
 // This function returns the number of plug-in classes this DLL
-__declspec( dllexport ) ClassDesc2* LibClassDesc(int i)
+__declspec( dllexport ) ClassDesc* LibClassDesc(int i)
 {
 	switch(i) {
 		case 0: return GetSampleKFCtrlClassDesc();
@@ -93,7 +93,7 @@ TCHAR *GetString(int id)
 	static TCHAR buf[256];
 
 	if (hInstance)
-		return LoadString(hInstance, id, buf, sizeof(buf)) ? buf : NULL;
+		return LoadString(hInstance, id, buf, _countof(buf)) ? buf : NULL;
 	return NULL;
 }
 

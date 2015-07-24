@@ -14,13 +14,12 @@
 
 #include "Lesson2.h"
 
-#define Lesson2_CLASS_ID	Class_ID(0xcbcab499, 0xc63d5740)
+#define Lesson2_CLASS_ID	Class_ID(0x1f75565c, 0x8d3eebc4)
 
 class Lesson2 : public SceneExport {
 public:
-	//Constructor/Destructor
-	Lesson2();
-	~Lesson2();
+
+	static HWND hParams;
 
 	int				ExtCount();					// Number of extensions supported
 	const TCHAR *	Ext(int n);					// Extension #n (i.e. "3DS")
@@ -34,7 +33,41 @@ public:
 	void			ShowAbout(HWND hWnd);		// Show DLL's "About..." box
 
 	BOOL SupportsOptions(int ext, DWORD options);
-	int  DoExport(const TCHAR *name,ExpInterface *ei,Interface *i, BOOL suppressPrompts=FALSE, DWORD options=0);
+	int				DoExport(const TCHAR *name,ExpInterface *ei,Interface *i, BOOL suppressPrompts=FALSE, DWORD options=0);
+
+	//Constructor/Destructor
+	Lesson2();
+	~Lesson2();	
+
+private:
+
+	//////////////////////////////////////////////////////////////////////////
+	// Export max entities
+
+	// Export a Max Node.  This recursive function will iterate
+	// the max scene tree, and export the interesting information
+	// from each node visited.
+	void Export(INode* pNode, int iTreeDepth = 0);
+
+	//////////////////////////////////////////////////////////////////////////
+	// Output Utilities
+
+	// Our output section.  Because we are a simple text writer,
+	// we are simply going to pipe our messages to a text file.
+	FILE* m_pFile;
+
+	// Initialize our out stream.  This function must be
+	// called before commencing the export process
+	BOOL BeginWriting(const TCHAR* pPath);
+
+	// Finalize our out stream.  This function must be
+	// called before finishing the export process
+	void EndWriting();
+
+	// A simple printf wrapper function to encapsulate
+	// writing to the file.
+	void Write(int indent, const MCHAR* pMsg, ...);
+
 };
 
 
@@ -51,32 +84,29 @@ public:
 
 	virtual const TCHAR* InternalName() 			{ return _T("Lesson2"); }	// returns fixed parsable name (scripter-visible name)
 	virtual HINSTANCE HInstance() 					{ return hInstance; }					// returns owning module handle
-	
+
 
 };
 
-
-ClassDesc2* GetLesson2Desc() { 
-	static Lesson2ClassDesc Lesson2Desc;
-	return &Lesson2Desc; 
-}
+static Lesson2ClassDesc Lesson2Desc;
+ClassDesc2* GetLesson2Desc() { return &Lesson2Desc; }
 
 
 
 
 
-INT_PTR CALLBACK Lesson2OptionsDlgProc(HWND hWnd,UINT message,WPARAM,LPARAM lParam) {
-	static Lesson2* imp = nullptr;
+INT_PTR CALLBACK Lesson2OptionsDlgProc(HWND hWnd,UINT message,WPARAM wParam,LPARAM lParam) {
+	static Lesson2 *imp = NULL;
 
 	switch(message) {
-		case WM_INITDIALOG:
-			imp = (Lesson2 *)lParam;
-			CenterWindow(hWnd,GetParent(hWnd));
-			return TRUE;
+	case WM_INITDIALOG:
+		imp = (Lesson2 *)lParam;
+		CenterWindow(hWnd,GetParent(hWnd));
+		return TRUE;
 
-		case WM_CLOSE:
-			EndDialog(hWnd, 0);
-			return 1;
+	case WM_CLOSE:
+		EndDialog(hWnd, 0);
+		return 1;
 	}
 	return 0;
 }
@@ -85,48 +115,42 @@ INT_PTR CALLBACK Lesson2OptionsDlgProc(HWND hWnd,UINT message,WPARAM,LPARAM lPar
 //--- Lesson2 -------------------------------------------------------
 Lesson2::Lesson2()
 {
-
+	m_pFile = NULL; // Dont forget to initialize
 }
 
 Lesson2::~Lesson2() 
 {
-
+	DbgAssert(m_pFile == NULL); // And check we cleaned up
 }
 
 int Lesson2::ExtCount()
 {
-	#pragma message(TODO("Returns the number of file name extensions supported by the plug-in."))
 	return 1;
 }
 
-const TCHAR *Lesson2::Ext(int /*i*/)
+const TCHAR *Lesson2::Ext(int n)
 {		
-	#pragma message(TODO("Return the 'i-th' file name extension (i.e. \"3DS\")."))
-	return _T("");
+	return _T("txt");
 }
 
 const TCHAR *Lesson2::LongDesc()
 {
-	#pragma message(TODO("Return long ASCII description (i.e. \"Targa 2.0 Image File\")"))
-	return _T("");
+	return _T("Basic ASCII Scene Exporter");
 }
-	
+
 const TCHAR *Lesson2::ShortDesc() 
 {			
-	#pragma message(TODO("Return short ASCII description (i.e. \"Targa\")"))
-	return _T("");
+	return _T("Lesson2-ASCII");
 }
 
 const TCHAR *Lesson2::AuthorName()
 {			
-	#pragma message(TODO("Return ASCII Author name"))
-	return _T("");
+	return _T("Your Name");
 }
 
 const TCHAR *Lesson2::CopyrightMessage() 
 {	
-	#pragma message(TODO("Return ASCII Copyright message"))
-	return _T("");
+	return _T("Copyright: Your Studio");
 }
 
 const TCHAR *Lesson2::OtherMessage1() 
@@ -143,34 +167,98 @@ const TCHAR *Lesson2::OtherMessage2()
 
 unsigned int Lesson2::Version()
 {				
-	#pragma message(TODO("Return Version number * 100 (i.e. v3.01 = 301)"))
+#pragma message(TODO("Return Version number * 100 (i.e. v3.01 = 301)"))
 	return 100;
 }
 
-void Lesson2::ShowAbout(HWND /*hWnd*/)
+void Lesson2::ShowAbout(HWND hWnd)
 {			
 	// Optional
 }
 
-BOOL Lesson2::SupportsOptions(int /*ext*/, DWORD /*options*/)
+BOOL Lesson2::SupportsOptions(int ext, DWORD options)
 {
-	#pragma message(TODO("Decide which options to support.  Simply return true for each option supported by each Extension the exporter supports."))
+#pragma message(TODO("Decide which options to support.  Simply return true for each option supported by each Extension the exporter supports."))
 	return TRUE;
 }
 
 
-int	Lesson2::DoExport(const TCHAR* /*name*/, ExpInterface* /*ei*/, Interface* /*ip*/, BOOL suppressPrompts, DWORD /*options*/)
+int	Lesson2::DoExport(const TCHAR *name,ExpInterface *ei,Interface *i, BOOL suppressPrompts, DWORD options)
 {
-	#pragma message(TODO("Implement the actual file Export here and"))
 
-	if(!suppressPrompts)
-		DialogBoxParam(hInstance, 
-				MAKEINTRESOURCE(IDD_PANEL), 
-				GetActiveWindow(), 
-				Lesson2OptionsDlgProc, (LPARAM)this);
+	if (BeginWriting(name))
+	{
 
-	#pragma message(TODO("return TRUE If the file is exported properly"))
+		INode* pRootNode = i->GetRootNode();
+
+		//Export tree.
+		Export(pRootNode);
+
+		EndWriting();
+
+		return TRUE; // We have successfully exported to our file!
+	}
+
+	// If we are here, something in the export failed.
 	return FALSE;
 }
 
+//////////////////////////////////////////////////////////////////////////
+// Max Entity Export
 
+void Lesson2::Export(INode* pNode, int iTreeDepth /* = 0 */)
+{
+	// First step to export: What are we exporting?
+	// Here we are going to export the basic scene tree,
+	// identifying each node by name.
+
+	MCHAR * pNodeName = const_cast<MCHAR*>(pNode->GetName());
+	int nChildren = pNode->NumberOfChildren();
+
+	// Write out this node as [NodeName] : XX Children
+	Write(iTreeDepth, _T("[%s] : %i children"), pNodeName, nChildren);
+
+	// Recursively call the children
+	iTreeDepth++;
+	for (int i = 0; i < nChildren; i++)
+	{
+		Export(pNode->GetChildNode(i), iTreeDepth);
+	}
+}
+//////////////////////////////////////////////////////////////////////////
+// Writing utility functions
+
+BOOL Lesson2::BeginWriting(const TCHAR *pPath)
+{
+	// Check we are not currently writing
+	DbgAssert(m_pFile == NULL);
+
+	errno_t lErr = _tfopen_s(&m_pFile, pPath, TEXT("w"));
+	return lErr == 0;
+}
+
+void Lesson2::EndWriting()
+{
+	DbgAssert(m_pFile != NULL);
+
+	fclose(m_pFile);
+	m_pFile = NULL;
+}
+
+void Lesson2::Write(int indent, const MCHAR * pMsg, ...)
+{
+	DbgAssert(m_pFile != NULL);
+
+	// first, write in the indent
+	for (int i = 0; i < indent; i++) _ftprintf(m_pFile, _T("\t"));
+
+	// Write the message, passing in our variable
+	// parameters to a function that wraps printf
+	va_list vargs;
+	va_start(vargs, pMsg);
+	vfwprintf(m_pFile, pMsg, vargs);
+	va_end(vargs);
+
+	// Finish the line
+	_ftprintf (m_pFile, _T("\n"));
+}

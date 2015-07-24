@@ -22,7 +22,7 @@ class SampleGObject2 : public SimpleObject2
 {
 public:
 	// Parameter block handled by parent
-		float objSize;
+	float objSize;
 
 	//Constructor/Destructor
 	SampleGObject2();
@@ -77,7 +77,7 @@ public:
 
 	virtual const TCHAR* InternalName() 			{ return _T("SampleGObject2"); }	// returns fixed parsable name (scripter-visible name)
 	virtual HINSTANCE HInstance() 					{ return hInstance; }					// returns owning module handle
-	
+
 
 };
 
@@ -103,17 +103,17 @@ enum {
 
 
 static ParamBlockDesc2 samplegobject2_param_blk ( samplegobject2_params, _T("params"),  0, GetSampleGObject2Desc(), 
-	P_AUTO_CONSTRUCT + P_AUTO_UI, PBLOCK_REF, 
-	//rollout
-	IDD_PANEL, IDS_PARAMS, 0, 0, NULL,
-	// params
-	pb_spin, 			_T("spin"), 		TYPE_FLOAT, 	P_ANIMATABLE, 	IDS_SPIN, 
-		p_default, 		0.1f, 
-		p_range, 		0.0f,1000.0f, 
-		p_ui, 			TYPE_SPINNER,		EDITTYPE_FLOAT, IDC_EDIT,	IDC_SPIN, 0.01f, 
-		p_end,
-	p_end
-	);
+												 P_AUTO_CONSTRUCT + P_AUTO_UI, PBLOCK_REF, 
+												 //rollout
+												 IDD_PANEL, IDS_PARAMS, 0, 0, NULL,
+												 // params
+												 pb_spin, 			_T("spin"), 		TYPE_FLOAT, 	P_ANIMATABLE, 	IDS_SPIN, 
+												 p_default, 		0.1f, 
+												 p_range, 		0.0f,1000.0f, 
+												 p_ui, 			TYPE_SPINNER,		EDITTYPE_FLOAT, IDC_EDIT,	IDC_SPIN, 0.01f, 
+												 p_end,
+												 p_end
+												 );
 
 
 
@@ -175,37 +175,37 @@ int SampleGObject2CreateCallBack::proc(ViewExp *vpt,int msg, int point, int /*fl
 	// on the program flow when you are debugging your plug-in project:
 	//	DebugPrint("\nmousecallback::proc() called with: msg: %d point: %d flags: %d", msg, point, flags);
 	TimeValue t (0);
-    if (msg==MOUSE_POINT||msg==MOUSE_MOVE) {
-        switch(point) 
-        {
-        case 0: // only happens with MOUSE_POINT msg
-            ob->suspendSnap = TRUE;
-            sp0 = m;
-            p0 = vpt->SnapPoint(m,m,NULL,SNAP_IN_PLANE);
-            mat.SetTrans(p0); // sets the pivot location
-            ob->objSize = 0.0;
-            break;
-        case 1:
+	if (msg==MOUSE_POINT||msg==MOUSE_MOVE) {
+		switch(point) 
+		{
+		case 0: // only happens with MOUSE_POINT msg
+			ob->suspendSnap = TRUE;
+			sp0 = m;
+			p0 = vpt->SnapPoint(m,m,NULL,SNAP_IN_PLANE);
+			mat.SetTrans(p0); // sets the pivot location
+			ob->objSize = 0.0;
+			break;
+		case 1:
 			{
-            ob->suspendSnap = TRUE; 
-            p1 = vpt->SnapPoint(m,m,NULL,SNAP_IN_PLANE);
-            float speedFactor = 24.0f;
-            ob->objSize = (Length(p1 - p0) / speedFactor);
-            ob->mesh.InvalidateGeomCache();
-            ob->BuildMesh(t);
-            if (msg == 1)
-                return CREATE_STOP;
-            break;
+				ob->suspendSnap = TRUE; 
+				p1 = vpt->SnapPoint(m,m,NULL,SNAP_IN_PLANE);
+				float speedFactor = 24.0f;
+				ob->objSize = (Length(p1 - p0) / speedFactor);
+				ob->mesh.InvalidateGeomCache();
+				ob->BuildMesh(t);
+				if (msg == 1)
+					return CREATE_STOP;
+				break;
 			}
-        case 2:			
-            return CREATE_STOP;
-        }
-        ob->NotifyDependents(FOREVER, PART_ALL, REFMSG_CHANGE);
-    } 
-    else {
-        if (msg == MOUSE_ABORT) return CREATE_ABORT;
-    }
-    return TRUE;
+		case 2:			
+			return CREATE_STOP;
+		}
+		ob->NotifyDependents(FOREVER, PART_ALL, REFMSG_CHANGE);
+	} 
+	else {
+		if (msg == MOUSE_ABORT) return CREATE_ABORT;
+	}
+	return TRUE;
 }
 
 static SampleGObject2CreateCallBack SampleGObject2CreateCB;
@@ -240,7 +240,7 @@ Object* SampleGObject2::ConvertToType(TimeValue t, Class_ID obtype)
 	//      whether obtype == EDITABLE_SURF_CLASS_ID and convert the object
 	//      to nurbs surface and return the object
 	//      If no special conversion is needed remove this implementation.
-	
+
 	return SimpleObject::ConvertToType(t,obtype);
 }
 

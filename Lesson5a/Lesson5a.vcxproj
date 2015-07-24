@@ -18,7 +18,7 @@
     <ProjectName>Lesson5a</ProjectName>
     <ProjectGuid>{6671F0BA-6FB8-4f35-8392-0676D05113A8}</ProjectGuid>
     <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <MaxSDK>C:\Program Files\Autodesk\3ds Max 2015 SDK\maxsdk</MaxSDK>
+    <MaxSDK>C:\Program Files\Autodesk\3ds Max 2016 SDK\maxsdk</MaxSDK>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <Import Project="$(MaxSDK)\ProjectSettings\PropertySheets\3dsmax.general.project.settings.props" />
@@ -28,10 +28,10 @@
   </ImportGroup>
   <PropertyGroup>
     <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
-    <OutDir Condition="'$(Platform)'=='x64'">C:\Program Files\Autodesk\3ds Max 2015\plugins\</OutDir>
+    <OutDir Condition="'$(Platform)'=='x64'">C:\Program Files\Autodesk\3ds Max 2016 SDK\maxsdk\plugins\</OutDir>
     <IntDir>$(ProjectDir)\obj\$(MaxPlatform)\$(MaxConfiguration)\</IntDir>
     <TargetName>Lesson5a</TargetName>
-    <TargetExt>.dlo</TargetExt>
+    <TargetExt>.dlu</TargetExt>
   </PropertyGroup>
   <ItemDefinitionGroup>
     <ClCompile>
@@ -42,7 +42,7 @@
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(MaxSdkLib);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>bmm.lib; core.lib; geom.lib; gfx.lib; mesh.lib; maxutil.lib; maxscrpt.lib; manipsys.lib; paramblk2.lib;;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>bmm.lib; core.lib; geom.lib; gfx.lib; mesh.lib; maxutil.lib; maxscrpt.lib; gup.lib; paramblk2.lib;;%(AdditionalDependencies)</AdditionalDependencies>
       <ModuleDefinitionFile>Lesson5a.def</ModuleDefinitionFile>
     </Link>
   </ItemDefinitionGroup>

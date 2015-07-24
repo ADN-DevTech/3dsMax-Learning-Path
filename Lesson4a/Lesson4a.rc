@@ -97,9 +97,9 @@ END
 
 STRINGTABLE DISCARDABLE
 BEGIN
-    IDS_LIBDESCRIPTION      "simple procedural controller"
-    IDS_CATEGORY            "Learning Path"
-    IDS_CLASS_NAME          "SampleProCtrl"
+    IDS_LIBDESCRIPTION      "Example controller plug-in"
+    IDS_CATEGORY            "SDK Documentation"
+    IDS_CLASS_NAME          "Lesson4a"
     IDS_PARAMS              "Parameters"
     IDS_SPIN                "Spin"
  //TEX_TYPE

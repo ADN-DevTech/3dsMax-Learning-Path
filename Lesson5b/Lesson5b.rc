@@ -97,9 +97,9 @@ END
 
 STRINGTABLE DISCARDABLE
 BEGIN
-    IDS_LIBDESCRIPTION      "Uses mouse commands to create a geometric object"
-    IDS_CATEGORY            "Lesson Path"
-    IDS_CLASS_NAME          "SampleGObject2"
+    IDS_LIBDESCRIPTION      "Example Geom Object Plug-in"
+    IDS_CATEGORY            "SDK Documentation"
+    IDS_CLASS_NAME          "Lesson5b"
     IDS_PARAMS              "Parameters"
     IDS_SPIN                "Spin"
  //TEX_TYPE

@@ -21,13 +21,13 @@
 class SampleRef : public UtilityObj , public ReferenceMaker
 {
 public:
-		
+
 	//Constructor/Destructor
 	SampleRef();
 	virtual ~SampleRef();
 
 	virtual void DeleteThis() { }
-	
+
 	virtual void BeginEditParams(Interface *ip,IUtil *iu);
 	virtual void EndEditParams(Interface *ip,IUtil *iu);
 
@@ -49,7 +49,7 @@ public:
 
 	virtual void Init(HWND hWnd);
 	virtual void Destroy(HWND hWnd);
-	
+
 	// Singleton access
 	static SampleRef* GetInstance() { 
 		static SampleRef theSampleRef;
@@ -86,7 +86,7 @@ public:
 
 	virtual const TCHAR* InternalName() 			{ return _T("SampleRef"); }	// returns fixed parsable name (scripter-visible name)
 	virtual HINSTANCE HInstance() 					{ return hInstance; }					// returns owning module handle
-	
+
 
 };
 
@@ -104,7 +104,7 @@ SampleRef::SampleRef()
 	: hPanel(nullptr)
 	, iu(nullptr)
 {
-	
+
 }
 
 SampleRef::~SampleRef()
@@ -125,7 +125,7 @@ void SampleRef::BeginEditParams(Interface* ip,IUtil* iu)
 	if (ip->GetSelNodeCount() > 0)
 		ReplaceReference(0, ip->GetSelNode(0));
 }
-	
+
 void SampleRef::EndEditParams(Interface* ip,IUtil*)
 {
 	this->iu = nullptr;
@@ -186,10 +186,10 @@ void SampleRef::SetReference(int i, ReferenceTarget* pTarget)
 
 // Max calls this function to let us know of a changed state on our references.
 RefResult SampleRef::NotifyRefChanged(const Interval &changeInt,		// this parameter is never used
-	RefTargetHandle hTarget,	// Our reference who is notifying us.
-	PartID& partID,				// Can be additional information, depending on the message
-	RefMessage message,			// Whats happened?  This is the important info!
-	BOOL propagate)
+									  RefTargetHandle hTarget,	// Our reference who is notifying us.
+									  PartID& partID,				// Can be additional information, depending on the message
+									  RefMessage message,			// Whats happened?  This is the important info!
+									  BOOL propagate)
 {
 	// Should be true, but just in case
 	if (mpMyNode) {
@@ -207,8 +207,8 @@ RefResult SampleRef::NotifyRefChanged(const Interval &changeInt,		// this parame
 void SampleRef::SetText(const MSTR& s)
 {
 	// MSTR is the main string class in 3ds Max SDK.
-    // hPanel is a data member pointing to the rollout page and
-    // IDC_NODENAME is the name of the static text field in that rollout page.
+	// hPanel is a data member pointing to the rollout page and
+	// IDC_NODENAME is the name of the static text field in that rollout page.
 	SetDlgItemText(hPanel, IDC_NODENAME, s.data());	
 }
 
@@ -226,26 +226,26 @@ INT_PTR CALLBACK SampleRef::DlgProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM l
 {
 	switch (msg) 
 	{
-		case WM_INITDIALOG:
-			SampleRef::GetInstance()->Init(hWnd);
-			break;
+	case WM_INITDIALOG:
+		SampleRef::GetInstance()->Init(hWnd);
+		break;
 
-		case WM_DESTROY:
-			SampleRef::GetInstance()->Destroy(hWnd);
-			break;
+	case WM_DESTROY:
+		SampleRef::GetInstance()->Destroy(hWnd);
+		break;
 
-		case WM_COMMAND:
-			#pragma message(TODO("React to the user interface commands.  A utility plug-in is controlled by the user from here."))
-			break;
+	case WM_COMMAND:
+#pragma message(TODO("React to the user interface commands.  A utility plug-in is controlled by the user from here."))
+		break;
 
-		case WM_LBUTTONDOWN:
-		case WM_LBUTTONUP:
-		case WM_MOUSEMOVE:
-			GetCOREInterface()->RollupMouseMessage(hWnd,msg,wParam,lParam);
-			break;
+	case WM_LBUTTONDOWN:
+	case WM_LBUTTONUP:
+	case WM_MOUSEMOVE:
+		GetCOREInterface()->RollupMouseMessage(hWnd,msg,wParam,lParam);
+		break;
 
-		default:
-			return 0;
+	default:
+		return 0;
 	}
 	return 1;
 }

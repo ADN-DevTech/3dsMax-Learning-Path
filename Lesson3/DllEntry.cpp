@@ -14,7 +14,7 @@
 
 #include "Lesson3.h"
 
-extern ClassDesc2* GetSampleRefDesc();
+extern ClassDesc2* GetLesson3Desc();
 
 HINSTANCE hInstance;
 int controlsInit = FALSE;
@@ -55,7 +55,7 @@ __declspec( dllexport ) int LibNumberClasses()
 __declspec( dllexport ) ClassDesc* LibClassDesc(int i)
 {
 	switch(i) {
-		case 0: return GetSampleRefDesc();
+		case 0: return GetLesson3Desc();
 		default: return 0;
 	}
 }
@@ -93,7 +93,7 @@ TCHAR *GetString(int id)
 	static TCHAR buf[256];
 
 	if (hInstance)
-		return LoadString(hInstance, id, buf, sizeof(buf)) ? buf : NULL;
+		return LoadString(hInstance, id, buf, _countof(buf)) ? buf : NULL;
 	return NULL;
 }
 

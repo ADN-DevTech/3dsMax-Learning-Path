@@ -97,9 +97,9 @@ END
 
 STRINGTABLE DISCARDABLE
 BEGIN
-    IDS_LIBDESCRIPTION      "simple key frame controller"
-    IDS_CATEGORY            "Learning Path"
-    IDS_CLASS_NAME          "SampleKFCtrl"
+    IDS_LIBDESCRIPTION      "Example Keyframe Controller plug-in"
+    IDS_CATEGORY            "SDK Documentation"
+    IDS_CLASS_NAME          "Lesson4b"
     IDS_PARAMS              "Parameters"
     IDS_SPIN                "Spin"
  //TEX_TYPE

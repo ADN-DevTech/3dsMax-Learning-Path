@@ -93,7 +93,7 @@ TCHAR *GetString(int id)
 	static TCHAR buf[256];
 
 	if (hInstance)
-		return LoadString(hInstance, id, buf, sizeof(buf)) ? buf : NULL;
+		return LoadString(hInstance, id, buf, _countof(buf)) ? buf : NULL;
 	return NULL;
 }
 
