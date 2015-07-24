@@ -1,0 +1,33 @@
+﻿Build started 7/24/2015 2:48:05 PM.
+     1>Project "C:\Users\avisd\Documents\GitHub\3dsMax-Learning-Path\Lesson1b\Lesson1b\Lesson1b.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\x86_amd64\CL.exe /c /I"C:\Program Files\Autodesk\3ds Max 2016 SDK\maxsdk\\include" /AI"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0" /Zi /nologo /W4 /MP /Od /D _USRDLL /D _ADESK_3DSMAX_WINDOWS_ /D WINVER=0x0502 /D _WIN32_WINNT=0x0502 /D _WIN32_WINDOWS=0x0502 /D _WIN32_IE=0x0800 /D _WINDOWS /D _CRT_SECURE_NO_DEPRECATE /D _CRT_NONSTDC_NO_DEPRECATE /D _SCL_SECURE_NO_DEPRECATE /D _CRT_SECURE_CPP_OVERLOAD_STANDARD_NAMES=1 /D _CRT_SECURE_CPP_OVERLOAD_SECURE_NAMES=1 /D ISOLATION_AWARE_ENABLED=1 /D MODULE_NAME=Lesson1b.dlu /D _HYBRID /D IS_HYBRID /D SECURE_SCL=0 /D WIN32 /D WIN64 /D _WINDLL /D _UNICODE /D UNICODE /Gm- /EHa /RTC1 /MD /GS /fp:fast /Zc:wchar_t /Zc:forScope /GR /Fo"C:\Users\avisd\Documents\GitHub\3dsMax-Learning-Path\Lesson1b\Lesson1b\\obj\x64\Hybrid\\" /Fd"C:\Users\avisd\Documents\GitHub\3dsMax-Learning-Path\Lesson1b\Lesson1b\\obj\x64\Hybrid\vc110.pdb" /Gd /TP /FC /errorReport:prompt /GR /we4002 /we4706 /we4390 /we4557 /we4546 /we4545 /we4295 /we4310 /we4130 /we4611 /we4213 /we4121 /we4715 /we4701 /w34265 /wd4244 /wd4018 /wd4819 Lesson1b.cpp DllEntry.cpp
+         Lesson1b.cpp
+         DllEntry.cpp
+         c:\users\avisd\documents\github\3dsmax-learning-path\lesson1b\lesson1b\dllentry.cpp(78): TODO: Perform initialization here.
+         c:\users\avisd\documents\github\3dsmax-learning-path\lesson1b\lesson1b\dllentry.cpp(87): TODO: Perform un-initialization here.
+         c:\users\avisd\documents\github\3dsmax-learning-path\lesson1b\lesson1b\lesson1b.cpp(130): TODO: React to the user interface commands.  A utility plug-in is controlled by the user from here.
+       ResourceCompile:
+         C:\Program Files (x86)\Windows Kits\8.0\bin\x86\rc.exe /D _MSC_VER /D _UNICODE /D UNICODE /l"0x0409" /nologo /fo"C:\Users\avisd\Documents\GitHub\3dsMax-Learning-Path\Lesson1b\Lesson1b\\obj\x64\Hybrid\Lesson1b.res" Lesson1b.rc 
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Program Files\Autodesk\3ds Max 2016 SDK\maxsdk\plugins\Lesson1b.dlu" /NOLOGO /LIBPATH:"C:\Program Files\Autodesk\3ds Max 2016 SDK\maxsdk\lib\x64\Hybrid\\" /LIBPATH:"C:\Program Files\Autodesk\3ds Max 2016 SDK\maxsdk\lib\x64\Release\\" /LIBPATH:"C:\Program Files\\3dswin\lib\x64\Release\\" bmm.lib core.lib geom.lib gfx.lib mesh.lib maxutil.lib maxscrpt.lib gup.lib paramblk2.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /DEF:"Lesson1b.def" /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Program Files\Autodesk\3ds Max 2016 SDK\maxsdk\plugins\Lesson1b.dlu.pdb" /PDBSTRIPPED:"C:\Program Files\Autodesk\3ds Max 2016 SDK\maxsdk\\pdb\x64\Hybrid\Lesson1b.dlu.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE:NO /NXCOMPAT /IMPLIB:"C:\Users\avisd\Documents\GitHub\3dsMax-Learning-Path\Lesson1b\Lesson1b\\obj\x64\Hybrid\\Lesson1b.lib" /MACHINE:X64 /DLL "C:\Users\avisd\Documents\GitHub\3dsMax-Learning-Path\Lesson1b\Lesson1b\\obj\x64\Hybrid\Lesson1b.res"
+         "C:\Users\avisd\Documents\GitHub\3dsMax-Learning-Path\Lesson1b\Lesson1b\\obj\x64\Hybrid\Lesson1b.obj"
+         "C:\Users\avisd\Documents\GitHub\3dsMax-Learning-Path\Lesson1b\Lesson1b\\obj\x64\Hybrid\DllEntry.obj"
+            Creating library C:\Users\avisd\Documents\GitHub\3dsMax-Learning-Path\Lesson1b\Lesson1b\\obj\x64\Hybrid\\Lesson1b.lib and object C:\Users\avisd\Documents\GitHub\3dsMax-Learning-Path\Lesson1b\Lesson1b\\obj\x64\Hybrid\\Lesson1b.exp
+         Lesson1b.vcxproj -> C:\Program Files\Autodesk\3ds Max 2016 SDK\maxsdk\plugins\Lesson1b.dlu
+       PostBuildEvent:
+         "C:\Program Files\Autodesk\3ds Max 2016 SDK\maxsdk\tools\RunMUIRCT.exe" "C:\Program Files\Autodesk\3ds Max 2016 SDK\maxsdk\plugins\\" Lesson1b.dlu
+         :VCEnd
+         ==== RunMUIRCT: Start ====
+         RunMUIRCT: WARNING - Could not find version info in file: C:\Program Files\Autodesk\3ds Max 2016 SDK\maxsdk\plugins\Lesson1b.dlu
+         
+         There is no version resource in the file 
+         Language neutral file (C:\Users\avisd\AppData\Local\Temp\RunMUIRCT\Lesson1b.dlu.ln) successfully created
+         MUI file (C:\Users\avisd\AppData\Local\Temp\RunMUIRCT\Lesson1b.dlu.mui) successfully created 
+         FixCheckSum: No checksum fix required
+         ==== RunMUIRCT: Successs ====
+     1>Done Building Project "C:\Users\avisd\Documents\GitHub\3dsMax-Learning-Path\Lesson1b\Lesson1b\Lesson1b.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:04.12
