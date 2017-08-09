@@ -5,7 +5,7 @@ using System.Text;
 using System.Windows.Forms;
 
 using Autodesk.Max;
-using Autodesk.Max.Plugins;
+// using Autodesk.Max.Plugins;
 
 namespace AutodeskMaxDllDemo
 {

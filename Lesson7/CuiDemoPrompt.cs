@@ -11,7 +11,7 @@ namespace AutodeskMaxDllDemo
     {
         public override void InternalExecute()
         {            
-            IInterface13 Interface = Autodesk.Max.GlobalInterface.Instance.COREInterface13;
+            IInterface17 Interface = Autodesk.Max.GlobalInterface.Instance.COREInterface17;
             Interface.PushPrompt("Hello from the AutoDeskMaxDllDemo.dll");
         }
 
