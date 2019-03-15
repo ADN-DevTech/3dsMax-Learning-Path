@@ -1,20 +1,18 @@
 //**************************************************************************/
-// Copyright (c) 1998-2007 Autodesk, Inc.
+// Copyright (c) 1998-2018 Autodesk, Inc.
 // All rights reserved.
 // 
-// These coded instructions, statements, and computer programs contain
-// unpublished proprietary information written by Autodesk, Inc., and are
-// protected by Federal copyright law. They may not be disclosed to third
-// parties or copied or duplicated in any form, in whole or in part, without
-// the prior written consent of Autodesk, Inc.
+// Use of this software is subject to the terms of the Autodesk license 
+// agreement provided at the time of installation or download, or which 
+// otherwise accompanies this software in either electronic or hard copy form.
 //**************************************************************************/
-// DESCRIPTION: Contains the Dll Entry stuff
+// DESCRIPTION: Appwizard generated plugin
 // AUTHOR: 
 //***************************************************************************/
 
 #include "Lesson3.h"
 
-extern ClassDesc2* GetLesson3Desc();
+extern ClassDesc2* GetUtilitySampleDesc();
 
 HINSTANCE hInstance;
 int controlsInit = FALSE;
@@ -27,8 +25,9 @@ int controlsInit = FALSE;
 
 BOOL WINAPI DllMain(HINSTANCE hinstDLL,ULONG fdwReason,LPVOID /*lpvReserved*/)
 {
-	if( fdwReason == DLL_PROCESS_ATTACH )
+	if (fdwReason == DLL_PROCESS_ATTACH)
 	{
+		MaxSDK::Util::UseLanguagePackLocale();
 		// Hang on to this DLL's instance handle.
 		hInstance = hinstDLL;
 		DisableThreadLibraryCalls(hInstance);
@@ -54,8 +53,9 @@ __declspec( dllexport ) int LibNumberClasses()
 // This function returns the number of plug-in classes this DLL
 __declspec( dllexport ) ClassDesc* LibClassDesc(int i)
 {
-	switch(i) {
-		case 0: return GetLesson3Desc();
+	switch(i)
+	{
+		case 0: return GetUtilitySampleDesc();
 		default: return 0;
 	}
 }
@@ -93,7 +93,10 @@ TCHAR *GetString(int id)
 	static TCHAR buf[256];
 
 	if (hInstance)
+	{
 		return LoadString(hInstance, id, buf, _countof(buf)) ? buf : NULL;
+	}
+
 	return NULL;
 }
 
