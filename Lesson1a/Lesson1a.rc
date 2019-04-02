@@ -97,9 +97,9 @@ END
 
 STRINGTABLE DISCARDABLE
 BEGIN
-    IDS_LIBDESCRIPTION      "Lesson 1: a sample utility plug-in"
-    IDS_CATEGORY            "Learning Path"
-    IDS_CLASS_NAME          "SampleUtil"
+    IDS_LIBDESCRIPTION      "My first utility"
+    IDS_CATEGORY            "Test Plug-ins"
+    IDS_CLASS_NAME          "UtilitySample"
     IDS_PARAMS              "Parameters"
     IDS_SPIN                "Spin"
  //TEX_TYPE

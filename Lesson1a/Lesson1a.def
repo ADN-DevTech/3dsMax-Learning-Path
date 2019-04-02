@@ -1,4 +1,4 @@
-LIBRARY Lesson1a.dlu
+LIBRARY lesson1a.dlu
 EXPORTS
    LibDescription       @1       PRIVATE
    LibNumberClasses     @2       PRIVATE

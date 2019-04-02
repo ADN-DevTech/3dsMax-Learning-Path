@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|x64">
       <Configuration>Debug</Configuration>
@@ -18,8 +18,8 @@
     <ProjectName>Lesson1a</ProjectName>
     <ProjectGuid>{6671F0BA-6FB8-4f35-8392-0676D05113A8}</ProjectGuid>
     <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <MaxSDK>C:\Program Files\Autodesk\3ds Max 2018 SDK\maxsdk</MaxSDK>
-    <WindowsTargetPlatformVersion>10.0.10586.0</WindowsTargetPlatformVersion>
+    <MaxSDK>C:\Program Files\Autodesk\3ds Max 2020 SDK\maxsdk</MaxSDK>
+    <Keyword>Qt4VS</Keyword>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <Import Project="$(MaxSDK)\ProjectSettings\PropertySheets\3dsmax.general.project.settings.props" />
@@ -29,38 +29,58 @@
   </ImportGroup>
   <PropertyGroup>
     <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
-    <OutDir Condition="'$(Platform)'=='x64'">$(MaxSdkPlugin)</OutDir>
+    <OutDir Condition="'$(Platform)'=='x64'">C:\Program Files\Autodesk\3ds Max 2020 SDK\maxsdk\Plugins\</OutDir>
     <IntDir>$(ProjectDir)\obj\$(MaxPlatform)\$(MaxConfiguration)\</IntDir>
-    <TargetName>Lesson1a</TargetName>
+    <TargetName>lesson1a</TargetName>
     <TargetExt>.dlu</TargetExt>
   </PropertyGroup>
   <ItemDefinitionGroup>
     <ClCompile>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <PreprocessorDefinitions>_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(MaxSdkInc);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_USRDLL;QT_CORE_LIB; QT_GUI_LIB; QT_WIDGETS_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(MaxSdkInc);$(QTDIR)\include;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;.\GeneratedFiles;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <WarningLevel>Level4</WarningLevel>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>$(MaxSdkLib);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>bmm.lib; core.lib; geom.lib; gfx.lib; mesh.lib; maxutil.lib; maxscrpt.lib; gup.lib; paramblk2.lib;;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>Lesson1a.def</ModuleDefinitionFile>
+      <AdditionalLibraryDirectories>$(MaxSdkLib);$(QTDIR)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>bmm.lib;core.lib;geom.lib;gfx.lib;mesh.lib;maxutil.lib;maxscrpt.lib;gup.lib;paramblk2.lib;;Qt5Core.lib;Qt5Cored.lib;Qt5Gui.lib;Qt5Guid.lib;Qt5Widgets.lib;Qt5Widgetsd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ModuleDefinitionFile>lesson1a.def</ModuleDefinitionFile>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Lesson1a.cpp" />
+    <ClCompile Include="lesson1a.cpp" />
     <ClCompile Include="DllEntry.cpp" />
+    <ClCompile Include="GeneratedFiles\moc_QtPluginRollup.cpp" />
+    <ClCompile Include="QtPluginRollup.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Lesson1a.def" />
+    <CustomBuild Include="plugin_form.ui">
+      <AdditionalInputs>$(QTDIR)\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Message>Uic%27ing %(Identity)...</Message>
+      <Outputs>.\GeneratedFiles\ui_%(Filename).h;%(Outputs)</Outputs>
+      <Command>"$(QTDIR)\bin\uic.exe" -o ".\GeneratedFiles\ui_%(Filename).h" "%(FullPath)"</Command>
+    </CustomBuild>
+    <None Include="lesson1a.def" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="3dsmaxsdk_preinclude.h" />
-    <ClInclude Include="Lesson1a.h" />
+    <ClInclude Include="lesson1a.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="GeneratedFiles\ui_plugin_form.h" />
+    <CustomBuild Include="QtPluginRollup.h">
+      <AdditionalInputs>$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message>Moc%27ing %(Identity)...</Message>
+      <Outputs>.\GeneratedFiles\moc_%(Filename).cpp</Outputs>
+      <Command>"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\moc_%(Filename).cpp"  -D_USRDLL -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -DGTEST_HAS_TR1_TUPLE=0 -D_SILENCE_FPOS_SEEKPOS_DEPRECATION_WARNING -D_ADESK_3DSMAX_WINDOWS_ "-D WINVER=0x0601" -D_WIN32_WINNT=0x0601 -D_WIN32_WINDOWS=0x0601 -D_WIN32_IE=0x0800 -D_WINDOWS -D_CRT_SECURE_NO_DEPRECATE -D_CRT_NONSTDC_NO_DEPRECATE -D_SCL_SECURE_NO_DEPRECATE -D_CRT_SECURE_CPP_OVERLOAD_STANDARD_NAMES=1 -D_CRT_SECURE_CPP_OVERLOAD_SECURE_NAMES=1 -DISOLATION_AWARE_ENABLED=1 -DMODULE_NAME=qt_simpleobj2.dlo -DQT_NO_UNICODE_LITERAL -D_HYBRID -DIS_HYBRID -DSECURE_SCL=0 -DWIN32 -DWIN64 -D_WINDLL -D_UNICODE -DUNICODE  "-I$(MaxSdkInc)\." "-I.\GeneratedFiles" "-I$(QTDIR)\include" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtANGLE" "-I$(QTDIR)\include\QtWidgets"</Command>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="Lesson1a.rc" />
+    <ResourceCompile Include="lesson1a.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties Qt5Version_x0020_x64="$(DefaultQtVersion)" />
+    </VisualStudio>
+  </ProjectExtensions>
 </Project>
