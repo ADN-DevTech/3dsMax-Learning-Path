@@ -1,6 +1,6 @@
 //{{NO_DEPENDENCIES}}
 // Microsoft Developer Studio generated include file.
-// Used by Lesson1a.rc
+// Used by lesson1a.rc
 //
 
 

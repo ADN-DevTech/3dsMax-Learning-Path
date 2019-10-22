@@ -6,8 +6,6 @@ using System.Text;
 using System.Windows.Forms;
 
 using Autodesk.Max;
-// for 2012: using MaxCustomControls;
-// for 2013:
 using UiViewModels.Actions;
 
 namespace AutodeskMaxDllDemo

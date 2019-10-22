@@ -5,7 +5,7 @@ using System.Text;
 using System.Windows.Forms;
 
 using Autodesk.Max;
-using Autodesk.Max.Plugins;
+// using Autodesk.Max.Plugins;
 
 namespace AutodeskMaxDllDemo
 {
@@ -24,9 +24,9 @@ namespace AutodeskMaxDllDemo
                 object obj = i.CreateInstance(SClass_ID.Geomobject, cid as IClass_ID);
                 if (obj == null) throw new Exception("Failed to create a sphere!");
                 IINode n = global.COREInterface.CreateObjectNode((IObject)obj);
-                IObject iobj = (IObject)obj;
-                IIParamArray ps = iobj.ParamBlock;
-                ps.SetValue(0, global.COREInterface.Time, 20.0f);
+                IAnimatable iobj = (IAnimatable)obj;
+                IIParamBlock2 ps = iobj.GetParamBlock(0);
+                ps.SetValue(0, global.COREInterface.Time, 20.0f, 0);
                 n.Move(global.COREInterface.Time, global.Matrix3.Create(), global.Point3.Create(20, 20, 0), true, true, 0, true);
             }
             catch (System.Exception ex)
